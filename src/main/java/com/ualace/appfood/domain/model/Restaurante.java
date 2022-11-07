@@ -1,5 +1,7 @@
 package com.ualace.appfood.domain.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -7,13 +9,23 @@ import java.util.Objects;
 @Entity
 public class Restaurante {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idRestaurante;
+    @Column(nullable = false)
     private String nome;
-
+    @Column(nullable = false)
     private BigDecimal taxaFrete;
+    @ManyToOne
+    @JoinColumn(name = "cozinha_id", nullable = false)
+    private Cozinha cozinha;
+
+    public Cozinha getCozinha() {
+        return cozinha;
+    }
+
+    public void setCozinha(Cozinha cozinha) {
+        this.cozinha = cozinha;
+    }
 
     public String getNome() {
         return nome;
@@ -32,11 +44,11 @@ public class Restaurante {
     }
 
     public Long getId() {
-        return id;
+        return idRestaurante;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idRestaurante = idRestaurante;
     }
 
     @Override
@@ -44,11 +56,11 @@ public class Restaurante {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Restaurante that = (Restaurante) o;
-        return id.equals(that.id);
+        return idRestaurante.equals(that.idRestaurante);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(idRestaurante);
     }
 }

@@ -4,19 +4,20 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Cozinha {
+public class FormaDePagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idFormaPagamento", nullable = false)
     private Long id;
-    @Column(nullable = false)
-    private String nome;
 
-    public String getNome() {
-        return nome;
+    private String descricao;
+
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Long getId() {
@@ -31,8 +32,8 @@ public class Cozinha {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Cozinha cozinha = (Cozinha) o;
-        return id.equals(cozinha.id);
+        FormaDePagamento that = (FormaDePagamento) o;
+        return id.equals(that.id);
     }
 
     @Override
