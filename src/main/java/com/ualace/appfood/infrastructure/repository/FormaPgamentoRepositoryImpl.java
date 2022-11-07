@@ -16,7 +16,7 @@ public class FormaPgamentoRepositoryImpl implements FormaPagamentoRepository {
 
     @Override
     public List<FormaDePagamento> listar() {
-        return manager.createQuery("from Cozinha", FormaDePagamento.class)
+        return manager.createQuery("from FormaDePagamento", FormaDePagamento.class)
                 .getResultList();
     }
 
@@ -32,8 +32,8 @@ public class FormaPgamentoRepositoryImpl implements FormaPagamentoRepository {
 
     @Transactional
     @Override
-    public FormaDePagamento salvar(FormaDePagamento FormaDePagamento) {
-        return manager.merge(FormaDePagamento);
+    public FormaDePagamento salvar(FormaDePagamento formaDePagamento) {
+        return manager.merge(formaDePagamento);
     }
     @Transactional
     @Override

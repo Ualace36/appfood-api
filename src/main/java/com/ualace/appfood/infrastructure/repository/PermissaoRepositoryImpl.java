@@ -3,28 +3,36 @@ package com.ualace.appfood.infrastructure.repository;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.model.Permissao;
 import com.ualace.appfood.domain.repository.PermissaoRepository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class PermissaoRepositoryImpl implements PermissaoRepository {
+
+    @PersistenceContext
+    private EntityManager manager;
     @Override
     public List<Permissao> listar() {
-        return null;
+        return manager.createQuery("from Permissao", Permissao.class)
+                .getResultList();
     }
 
     @Override
     public Permissao buscarPorId(Long id) {
-        return null;
+        return manager.find(Permissao.class,id);
     }
 
     @Override
     public Permissao salvar(Permissao permissao) {
-        return null;
+        return manager.merge(permissao);
     }
-
+    @Transactional
     @Override
     public void remover(Permissao permissao) {
-
+      permissao = buscarPorId(permissao.getIdPermissao());
+      manager.remove(permissao);
     }
 
 
