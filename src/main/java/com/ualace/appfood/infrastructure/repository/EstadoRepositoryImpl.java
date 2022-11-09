@@ -2,12 +2,13 @@ package com.ualace.appfood.infrastructure.repository;
 
 import com.ualace.appfood.domain.model.Estado;
 import com.ualace.appfood.domain.repository.EstadoRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
+@Repository
 public class EstadoRepositoryImpl implements EstadoRepository {
 
     @PersistenceContext

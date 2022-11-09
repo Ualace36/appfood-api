@@ -1,6 +1,7 @@
 package com.ualace.appfood.domain.repository;
 
 import com.ualace.appfood.domain.model.Cozinha;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

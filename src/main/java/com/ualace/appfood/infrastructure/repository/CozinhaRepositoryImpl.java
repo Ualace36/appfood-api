@@ -2,12 +2,13 @@ package com.ualace.appfood.infrastructure.repository;
 
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.repository.CozinhaRepository;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
+@Repository
 public class CozinhaRepositoryImpl implements CozinhaRepository {
     @PersistenceContext
     private EntityManager manager;
