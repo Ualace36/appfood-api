@@ -2,6 +2,7 @@ package com.ualace.appfood.api.controller;
 
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.repository.CozinhaRepository;
+import com.ualace.appfood.domain.service.CadastroCozinhaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -16,6 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/cozinhas")
 public class CozinhaController {
+
+    @Autowired
+    private CadastroCozinhaService cadastroCozinhaService;
 
     @Autowired
     private CozinhaRepository cozinhaRepository;
@@ -38,7 +42,7 @@ public class CozinhaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Cozinha adicionar(@RequestBody Cozinha cozinha){
-       return cozinhaRepository.salvar(cozinha);
+       return cadastroCozinhaService    .salvar(cozinha);
     }
     @PutMapping("/{id}")
     public ResponseEntity<Cozinha> atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha) {
@@ -60,7 +64,7 @@ public class CozinhaController {
             Cozinha cozinha = cozinhaRepository.buscarPorId(id);
 
             if (cozinha != null) {
-                cozinhaRepository.remover(cozinha);
+                cozinhaRepository.remover(id);
 
                 return ResponseEntity.noContent().build();
             }
