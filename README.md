@@ -26,7 +26,7 @@ ___
 
 ## :information_source: Sobre
 
-Este projeto se trata de uma API REST em Spring Boot de gerenciamento de delivery de aliementos. Com essa API, será possível criar cozinhas por gatronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega.
+Este projeto se trata de uma API REST em Spring Boot de gerenciamento de delivery de alimentos. Com essa API, será possível criar cozinhas por gastronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega.
 
 ## :interrobang: Motivo
 
