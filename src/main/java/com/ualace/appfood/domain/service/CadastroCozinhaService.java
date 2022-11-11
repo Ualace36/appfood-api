@@ -1,14 +1,11 @@
 package com.ualace.appfood.domain.service;
 
 import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
-import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.repository.CozinhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

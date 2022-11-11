@@ -2,6 +2,7 @@ package com.ualace.appfood.infrastructure.repository;
 
 import com.ualace.appfood.domain.model.Restaurante;
 import com.ualace.appfood.domain.repository.RestauranteRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +22,8 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
     }
 
     @Override
-    public Restaurante buscarPorId(Long id) {
-        return manager.find(Restaurante.class, id);
+    public Restaurante buscarPorId(Long idRestaurante) {
+        return manager.find(Restaurante.class, idRestaurante);
     }
      @Transactional
     @Override
@@ -33,7 +34,10 @@ public class RestauranteRepositoryImpl implements RestauranteRepository {
     @Transactional
     @Override
     public void remover(Long idRestaurante) {
-      idRestaurante = buscarPorId(idRestaurante.getId());
-              manager.remove(idRestaurante);
+      Restaurante restaurante = buscarPorId(idRestaurante);
+      if(restaurante == null){
+          throw new EmptyResultDataAccessException(1);
+      }
+              manager.remove(restaurante);
     }
 }
