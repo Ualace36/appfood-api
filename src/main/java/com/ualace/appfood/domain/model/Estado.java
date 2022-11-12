@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_estado", nullable = false)
     private Long idEstado;
 
     private String nome;
