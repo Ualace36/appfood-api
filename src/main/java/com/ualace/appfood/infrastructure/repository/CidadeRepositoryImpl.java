@@ -1,7 +1,9 @@
 package com.ualace.appfood.infrastructure.repository;
 
 import com.ualace.appfood.domain.model.Cidade;
+import com.ualace.appfood.domain.model.Estado;
 import com.ualace.appfood.domain.repository.CidadeRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +34,11 @@ public class CidadeRepositoryImpl implements CidadeRepository {
 
     @Transactional
     @Override
-    public void remover(Cidade cidade) {
-     cidade = buscarPorId(cidade.getIdCidade());
-     manager.remove(cidade);
+    public void remover(Long id) {
+        Cidade cidade = buscarPorId(id);
+        if (cidade == null){
+            throw new EmptyResultDataAccessException(1);
+        }
+        manager.remove(cidade);
     }
 }

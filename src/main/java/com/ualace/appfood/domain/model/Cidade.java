@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_cidade", nullable = false)
     private Long idCidade;
 
     private String nome;

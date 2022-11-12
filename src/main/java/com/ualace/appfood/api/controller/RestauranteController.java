@@ -1,6 +1,7 @@
 package com.ualace.appfood.api.controller;
 
 
+import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
 import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Restaurante;
 import com.ualace.appfood.domain.repository.RestauranteRepository;
@@ -68,6 +69,21 @@ public class RestauranteController {
         } catch (EntidadeNaoEncontradaException e) {
             return ResponseEntity.badRequest()
                     .body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{idRestaurante}")
+    public ResponseEntity<?> excluir(@PathVariable Long idRestaurante){
+        try {
+            cadastroRestauranteService.excluir(idRestaurante);
+            return ResponseEntity.noContent()
+                    .build();
+        }catch (EntidadeNaoEncontradaException e){
+            return ResponseEntity.notFound()
+                    .build();
+        }catch (EntidadeEmUsoException e){
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .build();
         }
     }
 

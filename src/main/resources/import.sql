@@ -9,8 +9,3 @@ insert into restaurante (nome, taxaFrete, cozinha_id) values ('Boteco do Sushi',
 insert into restaurante (nome, taxaFrete, cozinha_id) values ('Los Pampas', 12.35,1)
 insert into estado (nome ) values('Bahia')
 insert into estado (nome ) values ('Goias')
-
-insert into cidade (nome,estado_id_estado ) values ('Salvador',1)
-insert into cidade (nome,estado_id_estado ) values ('Ilheus',1)
-insert into cidade (nome,estado_id_estado ) values ('Anapolis',2)
-insert into cidade (nome,estado_id_estado ) values ('Itabuna',1)
