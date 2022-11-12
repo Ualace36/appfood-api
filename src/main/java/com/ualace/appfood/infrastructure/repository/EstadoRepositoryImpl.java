@@ -2,6 +2,7 @@ package com.ualace.appfood.infrastructure.repository;
 
 import com.ualace.appfood.domain.model.Estado;
 import com.ualace.appfood.domain.repository.EstadoRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +35,11 @@ public class EstadoRepositoryImpl implements EstadoRepository {
 
     @Transactional
     @Override
-    public void remover(Estado estado) {
-       estado = buscarPorId(estado.getIdEstado());
+    public void remover(Long id) {
+    Estado estado = buscarPorId(id);
+    if (estado == null){
+        throw new EmptyResultDataAccessException(1);
+    }
        manager.remove(estado);
     }
 }
