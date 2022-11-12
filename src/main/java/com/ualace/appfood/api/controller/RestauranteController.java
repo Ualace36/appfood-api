@@ -5,6 +5,7 @@ import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Restaurante;
 import com.ualace.appfood.domain.repository.RestauranteRepository;
 import com.ualace.appfood.domain.service.CadastroRestauranteService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,7 +39,7 @@ public class RestauranteController {
         }
     }
     @PostMapping
-    public ResponseEntity<?> adiicionar(@RequestBody Restaurante restaurante){
+    public ResponseEntity<?> adicionar(@RequestBody Restaurante restaurante){
         try {
             Restaurante restaurante1 =  cadastroRestauranteService.salvar(restaurante);
             return ResponseEntity.status(HttpStatus.CREATED)
@@ -48,4 +49,26 @@ public class RestauranteController {
         }
 
     }
+
+    @PutMapping("/{idRestaurante}")
+    public ResponseEntity<?> atualizar(@PathVariable Long idRestaurante,
+                                       @RequestBody Restaurante restaurante) {
+        try {
+            Restaurante restauranteAtual = restauranteRepository.buscarPorId(idRestaurante);
+
+            if (restauranteAtual != null) {
+                BeanUtils.copyProperties(restaurante, restauranteAtual, "idRestaurante");
+
+                restauranteAtual = cadastroRestauranteService.salvar(restauranteAtual);
+                return ResponseEntity.ok(restauranteAtual);
+            }
+
+            return ResponseEntity.notFound().build();
+
+        } catch (EntidadeNaoEncontradaException e) {
+            return ResponseEntity.badRequest()
+                    .body(e.getMessage());
+        }
+    }
+
 }

@@ -7,15 +7,17 @@ import com.ualace.appfood.domain.repository.CozinhaRepository;
 import com.ualace.appfood.domain.service.CadastroCozinhaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/cozinhas")
+@RequestMapping("/cozinhas")
 public class CozinhaController {
 
     @Autowired
@@ -44,11 +46,11 @@ public class CozinhaController {
     public Cozinha adicionar(@RequestBody Cozinha cozinha){
        return cadastroCozinhaService    .salvar(cozinha);
     }
-    @PutMapping("/{id}")
-    public ResponseEntity<Cozinha> atualizar(@PathVariable Long id, @RequestBody Cozinha cozinha) {
-      Cozinha cozinhaAtual = cozinhaRepository.buscarPorId(id);
+    @PutMapping("/{cozinhaId}")
+    public ResponseEntity<Cozinha> atualizar(@PathVariable Long cozinhaId,                                             @RequestBody Cozinha cozinha) {
+        Cozinha cozinhaAtual = cozinhaRepository.buscarPorId(cozinhaId);
+
         if (cozinhaAtual != null) {
-//			cozinhaAtual.setNome(cozinha.getNome());
             BeanUtils.copyProperties(cozinha, cozinhaAtual, "id");
 
             cozinhaAtual = cadastroCozinhaService.salvar(cozinhaAtual);
