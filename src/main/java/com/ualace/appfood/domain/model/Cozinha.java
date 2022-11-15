@@ -1,6 +1,10 @@
 package com.ualace.appfood.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +14,9 @@ public class Cozinha {
     private Long id;
     @Column(nullable = false)
     private String nome;
+    @JsonIgnore
+    @OneToMany(mappedBy = "cozinha")
+    private List<Restaurante> restaurantes = new ArrayList<>();
 
     public String getNome() {
         return nome;

@@ -7,7 +7,6 @@ import java.util.Objects;
 public class Permissao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_permissao", nullable = false)
     private Long idPermissao;
 
     private String nome;

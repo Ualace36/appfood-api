@@ -1,9 +1,12 @@
 package com.ualace.appfood.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,13 +22,14 @@ public class Restaurante {
     @JoinColumn(name = "cozinha_id", nullable = false)
     private Cozinha cozinha;
 
-    public Cozinha getCozinha() {
-        return cozinha;
-    }
-
-    public void setCozinha(Cozinha cozinha) {
-        this.cozinha = cozinha;
-    }
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "restaurante_forma_pagamento",
+            joinColumns = @JoinColumn(name = "restaurante_id"),
+            inverseJoinColumns = @JoinColumn(name = "forma_pagamento_id"))
+    private List<FormaDePagamento> formaDePagamento = new ArrayList<>();
+    @Embedded
+    private Endereco endereco;
 
     public String getNome() {
         return nome;
@@ -43,12 +47,28 @@ public class Restaurante {
         this.taxaFrete = taxaFrete;
     }
 
-    public Long getId() {
-        return idRestaurante;
+    public Cozinha getCozinha() {
+        return cozinha;
     }
 
-    public void setId(Long id) {
-        this.idRestaurante = idRestaurante;
+    public void setCozinha(Cozinha cozinha) {
+        this.cozinha = cozinha;
+    }
+
+    public List<FormaDePagamento> getFormaDePagamento() {
+        return formaDePagamento;
+    }
+
+    public void setFormaDePagamento(List<FormaDePagamento> formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
     @Override

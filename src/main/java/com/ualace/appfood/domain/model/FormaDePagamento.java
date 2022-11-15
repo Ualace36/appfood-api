@@ -7,10 +7,17 @@ import java.util.Objects;
 public class FormaDePagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idFormaPagamento", nullable = false)
-    private Long id;
+    private Long forma_pagamento_id;
 
     private String descricao;
+
+    public Long getForma_pagamento_id() {
+        return forma_pagamento_id;
+    }
+
+    public void setForma_pagamento_id(Long forma_pagamento_id) {
+        this.forma_pagamento_id = forma_pagamento_id;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -20,24 +27,16 @@ public class FormaDePagamento {
         this.descricao = descricao;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FormaDePagamento that = (FormaDePagamento) o;
-        return id.equals(that.id);
+        return forma_pagamento_id.equals(that.forma_pagamento_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(forma_pagamento_id);
     }
 }
