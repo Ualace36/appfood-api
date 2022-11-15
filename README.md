@@ -30,7 +30,7 @@ Este projeto se trata de uma API REST em Spring Boot de gerenciamento de deliver
 
 ## :interrobang: Motivo
 
-O Motivo para desenvoovimento dessa API é propor uma solução para problemas enfrentados por municípios que não possuam o Ifood para gerenciar os pedidos de alimentos, acompanhamento de status de entrega e criação de estabelecimento na plataforma.
+O Motivo para desenvolvimento dessa API é propor uma solução para problemas enfrentados por municípios que não possuam o Ifood para gerenciar os pedidos de alimentos, acompanhamento de status de entrega e criação de estabelecimento na plataforma.
 
 ## :seedling: Requisitos Mínimos
 
