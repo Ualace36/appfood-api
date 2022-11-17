@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Estado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idEstado;
+    private Long id;
 
     private String nome;
 
@@ -20,11 +20,11 @@ public class Estado {
     }
 
     public Long getIdEstado() {
-        return idEstado;
+        return id;
     }
 
     public void setIdEstado(Long idEstado) {
-        this.idEstado = idEstado;
+        this.id = idEstado;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class Estado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Estado estado = (Estado) o;
-        return idEstado.equals(estado.idEstado);
+        return id.equals(estado.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idEstado);
+        return Objects.hash(id);
     }
 }

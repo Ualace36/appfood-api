@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCidade;
+    private Long id;
 
     private String nome;
 
@@ -24,11 +24,11 @@ public class Cidade {
     }
 
     public Long getIdCidade() {
-        return idCidade;
+        return id;
     }
 
     public void setIdCidade(Long idCidade) {
-        this.idCidade = idCidade;
+        this.id = id;
     }
 
     public String getNome() {
@@ -44,11 +44,11 @@ public class Cidade {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cidade cidade = (Cidade) o;
-        return idCidade.equals(cidade.idCidade);
+        return id.equals(cidade.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idCidade);
+        return Objects.hash(id);
     }
 }

@@ -21,6 +21,7 @@ public class Restaurante {
     private String nome;
     @Column(nullable = false)
     private BigDecimal taxaFrete;
+   
     @ManyToOne
     @JoinColumn(name = "cozinha_id", nullable = false)
     private Cozinha cozinha;
@@ -44,9 +45,17 @@ public class Restaurante {
     @JsonIgnore
     @Embedded
     private Endereco endereco;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "restaurante")
     private List<Produto> produtos = new ArrayList<>();
+
+    public Long getIdRestaurante() {
+        return idRestaurante;
+    }
+
+    public void setIdRestaurante(Long idRestaurante) {
+        this.idRestaurante = idRestaurante;
+    }
 
     public String getNome() {
         return nome;
