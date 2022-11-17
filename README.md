@@ -26,7 +26,7 @@ ___
 
 ## :information_source: Sobre
 
-Este projeto se trata de uma API REST em Spring Boot de gerenciamento de delivery de alimentos. Com essa API, será possível criar cozinhas por gastronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega.
+Este projeto se trata de uma API REST em Spring Boot de gerenciamento de delivery de alimentos. Com essa API, será possível criar cozinhas por gastronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega. Utilizei o Padrão MVC para o desenvolvimento dessa aplicação, para armazenamento optei pelo banco de dados MySQL. Além disso o versionamento do código foi feito pelo o Git e o repositório GithuB. Como framework trabalhei com o Spring e toda organização e controle do projeto está sendo feita por meio da metodologias ágeis SCrum.
 
 ## :interrobang: Motivo
 
