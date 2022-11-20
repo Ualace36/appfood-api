@@ -6,6 +6,8 @@ create table grupo (id_grupo bigint not null auto_increment, nome varchar(255), 
 create table grupo_permissao (grupo_id bigint not null, permissao_id bigint not null) engine=InnoDB;
 create table hibernate_sequence (next_val bigint) engine=InnoDB;
 insert into hibernate_sequence values ( 1 );
+create table item_pedido (id bigint not null auto_increment, observacao varchar(255), preco_total decimal(19,2), preco_unitario decimal(19,2), quantidade integer, pedido_id bigint not null, produto_id_produto bigint not null, primary key (id)) engine=InnoDB;
+create table pedido (id bigint not null auto_increment, data_cancelamento datetime(6), data_confirmacao datetime(6), data_criacao datetime(6), data_entrega datetime(6), endereco_bairro varchar(255), endereco_cep varchar(255), endereco_complemento varchar(255), endereco_logradouro varchar(255), endereco_numero varchar(255), status integer, subtotal decimal(19,2), taxa_frete decimal(19,2), valor_total decimal(19,2), usuario_cliente_id bigint not null, endereco_cidade_id bigint, forma_de_pagamento_forma_pagamento_id bigint not null, restaurante_id_restaurante bigint not null, primary key (id)) engine=InnoDB;
 create table permissao (id_permissao bigint not null auto_increment, descricao varchar(255), nome varchar(255), primary key (id_permissao)) engine=InnoDB;
 create table produto (id_produto bigint not null auto_increment, ativo bit not null, descricao varchar(255) not null, nome varchar(255) not null, preco decimal(19,2) not null, restaurante_id_restaurante bigint not null, primary key (id_produto)) engine=InnoDB;
 create table restaurante (id_restaurante bigint not null auto_increment, data_atualizacao datetime not null, data_cadastro datetime not null, endereco_bairro varchar(255), endereco_cep varchar(255), endereco_complemento varchar(255), endereco_logradouro varchar(255), endereco_numero varchar(255), nome varchar(255) not null, taxa_frete decimal(19,2) not null, cozinha_id bigint not null, endereco_cidade_id bigint, primary key (id_restaurante)) engine=InnoDB;
@@ -15,6 +17,12 @@ create table usuario_grupo (usuario_id bigint not null, grupo_id bigint not null
 alter table cidade add constraint FKkworrwk40xj58kevvh3evi500 foreign key (estado_id) references estado (id);
 alter table grupo_permissao add constraint FKh21kiw0y0hxg6birmdf2ef6vy foreign key (permissao_id) references permissao (id_permissao);
 alter table grupo_permissao add constraint FKta4si8vh3f4jo3bsslvkscc2m foreign key (grupo_id) references grupo (id_grupo);
+alter table item_pedido add constraint FK60ym08cfoysa17wrn1swyiuda foreign key (pedido_id) references pedido (id);
+alter table item_pedido add constraint FKqwbnrrh4klcs4w1rv14qdhf5q foreign key (produto_id_produto) references produto (id_produto);
+alter table pedido add constraint FKcccmjvm9ytuxbe00h3wmtm77y foreign key (usuario_cliente_id) references usuario (id_usuario);
+alter table pedido add constraint FKk987vfg9cpgx7qxj3166fdqig foreign key (endereco_cidade_id) references cidade (id);
+alter table pedido add constraint FKo4l2w8cwe5361ujvr1tnyst18 foreign key (forma_de_pagamento_forma_pagamento_id) references forma_de_pagamento (forma_pagamento_id);
+alter table pedido add constraint FKjgisufr4n1b3rkr5le24pthy8 foreign key (restaurante_id_restaurante) references restaurante (id_restaurante);
 alter table produto add constraint FKnsbq9yxj3yhvxtplsny8p9qe9 foreign key (restaurante_id_restaurante) references restaurante (id_restaurante);
 alter table restaurante add constraint FK76grk4roudh659skcgbnanthi foreign key (cozinha_id) references cozinha (id);
 alter table restaurante add constraint FKbc0tm7hnvc96d8e7e2ulb05yw foreign key (endereco_cidade_id) references cidade (id);
