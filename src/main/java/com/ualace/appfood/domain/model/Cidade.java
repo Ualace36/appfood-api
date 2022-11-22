@@ -6,7 +6,7 @@ import java.util.Objects;
 @Entity
 public class Cidade {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
@@ -36,12 +36,12 @@ public class Cidade {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome= nome;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this== o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cidade cidade = (Cidade) o;
         return id.equals(cidade.id);
