@@ -19,12 +19,12 @@ public class Estado {
         this.nome = nome;
     }
 
-    public Long getIdEstado() {
+    public Long getId() {
         return id;
     }
 
-    public void setIdEstado(Long idEstado) {
-        this.id = idEstado;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
