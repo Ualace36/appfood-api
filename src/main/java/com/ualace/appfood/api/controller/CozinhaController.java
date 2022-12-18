@@ -1,17 +1,12 @@
 package com.ualace.appfood.api.controller;
 
-import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
-import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.repository.CozinhaRepository;
 import com.ualace.appfood.domain.service.CadastroCozinhaService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,17 +58,27 @@ public class CozinhaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Cozinha> remover(@PathVariable Long id) {
-        try {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void remover(@PathVariable Long id) {
+
             cadastroCozinhaService.excluir(id);
-                return ResponseEntity.noContent().build();
 
-            } catch (EntidadeNaoEncontradaException e) {
-            return ResponseEntity.notFound().build();
 
-             } catch (EntidadeEmUsoException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-
-        }
     }
-}
+//        @DeleteMapping("/{id}")
+//    public ResponseEntity<?> remover(@PathVariable Long id) {
+//        try {
+//            cadastroCozinhaService.excluir(id);
+//                return ResponseEntity.noContent().build();
+//
+//            } catch (EntidadeNaoEncontradaException e) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+//                    .body("Não encontrado");
+//
+//             } catch (EntidadeEmUsoException e) {
+//            return ResponseEntity.status(HttpStatus.CONFLICT)
+//                    .body(e.getMessage());
+//
+//        }
+    }
+
