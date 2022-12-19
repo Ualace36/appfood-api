@@ -37,7 +37,7 @@ public class CadastroRestauranteService {
         try{
             restauranteRepository.deleteById(idRestaurante);
         }catch (EmptyResultDataAccessException e){
-            throw new EntidadeEmUsoException(String.format("Não existe um cadastro de cozinha com o código %d", idRestaurante));
+            throw new EntidadeNaoEncontradaException(String.format("Não existe um cadastro de restaurante com o código %d", idRestaurante));
         }catch (DataIntegrityViolationException e){
             throw new EntidadeEmUsoException(String.format("Restaurante de %d não pode ser removida, pois está em uso", idRestaurante));
         }

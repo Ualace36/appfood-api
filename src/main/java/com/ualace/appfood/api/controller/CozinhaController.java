@@ -30,12 +30,13 @@ public class CozinhaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cozinha> obterId(@PathVariable Long id) {
+    public Object obterId(@PathVariable Long id) {
         Optional<Cozinha> cozinha = cozinhaRepository.findById(id);
         if (cozinha.isPresent()) {
             return ResponseEntity.ok(cozinha.get());
         } else {
             return ResponseEntity.notFound().build();
+
         }
     }
 
@@ -69,6 +70,7 @@ public class CozinhaController {
 //
 //    }
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<?> remover(@PathVariable Long id) {
         try {
             cadastroCozinhaService.excluir(id);
