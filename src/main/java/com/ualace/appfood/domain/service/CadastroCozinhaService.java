@@ -1,6 +1,7 @@
 package com.ualace.appfood.domain.service;
 
 import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
+import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.repository.CozinhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,11 @@ public class CadastroCozinhaService {
 
 
         } catch (EmptyResultDataAccessException e) {
-            throw new EntidadeEmUsoException(String.format("Não existe um cadstro de cozinha com código %d", cozinhaId));
+            throw new EntidadeNaoEncontradaException(String.format("Não existe um cadstro de cozinha com código %d!", cozinhaId));
 
 
         } catch (DataIntegrityViolationException e) {
-            throw new EntidadeEmUsoException(String.format("Cozinha de %d não pode ser removida, pois está em uso", cozinhaId));
+            throw new EntidadeEmUsoException(String.format("Cozinha com o código %d não pode ser removida, pois está em uso!", cozinhaId));
 
         }
     }
