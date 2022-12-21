@@ -30,35 +30,34 @@ public class CidadeCadastroService {
     public Cidade salvar(Cidade cidade) {
         Long id = cidade.getEstado().getId();
 
-       // Estado estado = estadoRepository.findById(id);
-
-		Estado estado = estadoRepository.findById(id)
-			.orElseThrow(() -> new EntidadeNaoEncontradaException(
-					String.format("Não existe cadastro de estado com código %d", id)));
-
-        cidade.setEstado(estado);
+        Optional<Estado> estado = estadoRepository.findById(id);
+        if (estado.isEmpty()) {
+            throw new EntidadeNaoEncontradaException(
+                    String.format("Não existe cadastro de Estado com o código %d", id));
+               }
 
         return cidadeRepository.save(cidade);
+//        Estado estado = estadoRepository.findById(estadoId)
+//                .orElseThrow(() -> new EntidadeNaoEncontradaException(
+//                        String.format("Não existe cadastro de estado com código %d", estadoId)));
+//
+//        cidade.setEstado(estado);
+//
+//        return cidadeRepository.save(cidade);
     }
 
-    public void excluir(Long cidadeId) {
+    public void excluir(Long id) {
         try {
-            cidadeRepository.deleteById(cidadeId);
+            cidadeRepository.deleteById(id);
 
         } catch (EmptyResultDataAccessException e) {
             throw new EntidadeNaoEncontradaException(
-                    String.format(MSG_CIDADE_NAO_ENCONTRADA, cidadeId));
+                    String.format("Não existe um cadastro de cidade com código %d", id));
 
         } catch (DataIntegrityViolationException e) {
             throw new EntidadeEmUsoException(
-                    String.format(MSG_CIDADE_EM_USO, cidadeId));
+                    String.format("Cidade de código %d não pode ser removida, pois está em uso", id));
         }
-    }
-
-    public Cidade buscarOuFalhar(Long cidadeId) {
-        return cidadeRepository.findById(cidadeId)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(
-                        String.format(MSG_CIDADE_NAO_ENCONTRADA, cidadeId)));
     }
 
 }
