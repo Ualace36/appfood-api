@@ -26,7 +26,7 @@ ___
 
 ## :information_source: Sobre
 
-Este projeto se trata de uma API REST padrão MVC com ecossistema Spring. Com essa API, será possível criar cozinhas por gastronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega, ou seja, fará todo o gerenciamento do processo do negócio desde o cadastro de um estabelecimento, como também do status de entrega. Utilizei o Padrão MVC para o desenvolvimento dessa aplicação, para armazenamento optei pelo banco de dados MySQL, sendo modelado pela biblioteca Flyway. Além disso o versionamento do código foi feito pelo o Git e o repositório GithuB. Como framework trabalhei com o Spring e toda organização e controle do projeto está sendo feita por meio da metodologias ágeis SCrum, pois as entregas diarias eram feitas em partes testáveis.
+Este projeto se trata de uma API REST padrão MVC com ecossistema Spring. Essa aplicação possibilitará criar cozinhas por gastronomias, por estados e por municípios. Além disso, será possível criar os pedidos dos pratos e gerenciar os status de entrega, ou seja, fará todo o gerenciamento do processo do negócio desde o cadastro de um estabelecimento, como também do status de entrega. Utilizei o Padrão MVC para o desenvolvimento dessa aplicação, para armazenamento optei pelo banco de dados MySQL, sendo modelado pela biblioteca Flyway. Além disso o versionamento do código foi feito pelo o Git e o repositório GithuB. Como framework trabalhei com o Spring e toda organização e controle do projeto está sendo feita por meio da metodologias ágeis SCrum, pois as entregas diarias eram feitas em partes testáveis.
 
 ## :interrobang: Motivo
 
