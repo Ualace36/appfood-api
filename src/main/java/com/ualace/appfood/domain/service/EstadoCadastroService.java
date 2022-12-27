@@ -1,7 +1,6 @@
 package com.ualace.appfood.domain.service;
 
 import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
-import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Estado;
 import com.ualace.appfood.domain.repository.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class EstadoCadastroService {
         try {
             estadoRepository.deleteById(id);
         }catch (EmptyResultDataAccessException e) {
-            throw new EntidadeNaoEncontradaException(String.format("Não existe um cadstro de estado com código %d", id));
+            throw new EntidadeEmUsoException(String.format("Não existe um cadstro de estado com código %d", id));
 
 
         } catch (DataIntegrityViolationException e) {
