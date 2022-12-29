@@ -1,5 +1,7 @@
 package com.ualace.appfood;
 
+import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
+import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.service.CadastroCozinhaService;
 import org.junit.jupiter.api.Assertions;
@@ -34,24 +36,50 @@ class CadastroCozinhaIntegrationTests {
 		assertThat(novaCozinha).isNotNull();
 		assertThat(novaCozinha.getId()).isNotNull();
 	}
-    @Test
-	public void deveFalhar_quandoCadstrarCozinhaSemNome(){
-	//Test InHappyPath
-	//TODO CENÁRIO
-		Cozinha novaCozinha = new Cozinha();
-		novaCozinha.setNome("");
-	//TODO AÇÃO
-     //novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
+   // @Test
+//	public void deveFalhar_quandoCadstrarCozinhaSemNome(){
+//	//Test InHappyPath
+//	//TODO CENÁRIO
+//		Cozinha novaCozinha = new Cozinha();
+//		novaCozinha.setNome("");
+//	//TODO AÇÃO
+//     //novaCozinha = cadastroCozinhaService.salvar(novaCozinha);
+//
+//	//TODO VALIDAÇÃO
+//
+//		ConstraintViolationException erroEsperado =
+//				Assertions.assertThrows(ConstraintViolationException.class, () -> {
+//					cadastroCozinhaService.salvar(novaCozinha);
+//				});
+//
+//		assertThat(erroEsperado).isNotNull();
+//	}
 
-	//TODO VALIDAÇÃO
-
-		ConstraintViolationException erroEsperado =
-				Assertions.assertThrows(ConstraintViolationException.class, () -> {
-					cadastroCozinhaService.salvar(novaCozinha);
+	@Test
+	public void shouldFalhar_whenExcluirCozinhaEmUso(){
+		//Test InHappyPath
+		//TODO CENÁRIO
+//		Cozinha novaCozinha = new Cozinha();
+//		novaCozinha.getId();
+		//TODO AÇÃO
+		EntidadeEmUsoException erroEsperado =
+				Assertions.assertThrows(EntidadeEmUsoException.class, () -> {
+					cadastroCozinhaService.excluir(2L);
 				});
 
 		assertThat(erroEsperado).isNotNull();
+
+		//TODO VALIDAÇÃO
 	}
+
+	@Test
+	public void deveFalhar_QuandoExcluirCozinhaInexistente(){
+
+		Assertions.assertThrows(EntidadeNaoEncontradaException.class, () ->{
+			cadastroCozinhaService.excluir(50l);
+		});
+	}
+
 	}
 
 
