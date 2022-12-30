@@ -20,6 +20,8 @@ import javax.validation.ConstraintViolationException;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RunWith(SpringRunner.class)
@@ -45,6 +47,20 @@ class CadastroCozinhaIntegrationTests {
 				.statusCode(HttpStatus.OK.value());
 	}
 
+	@Test
+	public void deveConter4Cozinhas_QuandoConsultarCozinhas() {
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+
+		given()
+				.basePath("/cozinhas")
+				.port(port)
+				.accept(ContentType.JSON)
+				.when()
+				.get()
+				.then()
+				.body("", hasSize(14))
+         		.body("nome", hasItems("Chinesa", "Tailandesa"));
+	}
 
 
 	@Test
