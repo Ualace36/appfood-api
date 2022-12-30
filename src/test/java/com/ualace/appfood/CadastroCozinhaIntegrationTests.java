@@ -4,24 +4,49 @@ import com.ualace.appfood.domain.exception.EntidadeEmUsoException;
 import com.ualace.appfood.domain.exception.EntidadeNaoEncontradaException;
 import com.ualace.appfood.domain.model.Cozinha;
 import com.ualace.appfood.domain.service.CadastroCozinhaService;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.swing.*;
 import javax.validation.ConstraintViolationException;
 
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CadastroCozinhaIntegrationTests {
     @Autowired
 	private CadastroCozinhaService cadastroCozinhaService;
+	//todo Testes de API
+	@LocalServerPort
+	private int port;
+
+	@Test
+	public void deveRetornarStatus200_QuandoConsultarCozinhas() {
+		RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+
+		given()
+				.basePath("/cozinhas")
+				.port(port)
+				.accept(ContentType.JSON)
+				.when()
+				.get()
+				.then()
+				.statusCode(HttpStatus.OK.value());
+	}
+
+
+
 	@Test
 	public void deveCadastrarCozinhaComSucesso_QuandoCozinhaCorreta() {
 		// Test happyPath
