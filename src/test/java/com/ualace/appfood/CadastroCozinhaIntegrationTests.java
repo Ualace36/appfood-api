@@ -62,7 +62,7 @@ class CadastroCozinhaIntegrationTests {
          		.body("nome", hasItems("Chinesa", "Tailandesa"));
 	}
 
-
+        // A partir de aqui incia os testes de integração
 	@Test
 	public void deveCadastrarCozinhaComSucesso_QuandoCozinhaCorreta() {
 		// Test happyPath
