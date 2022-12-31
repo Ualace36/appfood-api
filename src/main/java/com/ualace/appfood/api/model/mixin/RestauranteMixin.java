@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RestauranteMixin {
+    //Com essa anotation ignora o nome no momento da serelização, mas o considera na descerelização
     @JsonIgnoreProperties(value =  "nome", allowGetters = true)
     private Cozinha cozinha;
 
