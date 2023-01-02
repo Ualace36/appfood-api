@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,11 +28,11 @@ public class Pedido {
 
     @CreationTimestamp
     private
-    LocalDateTime dataCriacao;
+    OffsetDateTime dataCriacao;
 
-    private LocalDateTime dataConfirmacao;
-    private LocalDateTime dataCancelamento;
-    private LocalDateTime dataEntrega;
+    private OffsetDateTime dataConfirmacao;
+    private OffsetDateTime dataCancelamento;
+    private OffsetDateTime dataEntrega;
 
     @ManyToOne
     @JoinColumn(nullable = false)
@@ -96,35 +97,35 @@ public class Pedido {
         this.status = status;
     }
 
-    public LocalDateTime getDataCriacao() {
+    public OffsetDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
+    public void setDataCriacao(OffsetDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public LocalDateTime getDataConfirmacao() {
+    public OffsetDateTime getDataConfirmacao() {
         return dataConfirmacao;
     }
 
-    public void setDataConfirmacao(LocalDateTime dataConfirmacao) {
+    public void setDataConfirmacao(OffsetDateTime dataConfirmacao) {
         this.dataConfirmacao = dataConfirmacao;
     }
 
-    public LocalDateTime getDataCancelamento() {
+    public OffsetDateTime getDataCancelamento() {
         return dataCancelamento;
     }
 
-    public void setDataCancelamento(LocalDateTime dataCancelamento) {
+    public void setDataCancelamento(OffsetDateTime dataCancelamento) {
         this.dataCancelamento = dataCancelamento;
     }
 
-    public LocalDateTime getDataEntrega() {
+    public OffsetDateTime getDataEntrega() {
         return dataEntrega;
     }
 
-    public void setDataEntrega(LocalDateTime dataEntrega) {
+    public void setDataEntrega(OffsetDateTime dataEntrega) {
         this.dataEntrega = dataEntrega;
     }
 
