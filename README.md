@@ -30,7 +30,7 @@ Este projeto se trata de uma API REST padrão MVC com ecossistema Spring. Essa a
 
 ## :interrobang: Motivo
 
-O Motivo para desenvolvimento dessa API é propor uma solução para problemas enfrentados por municípios que não possuam o Ifood para gerenciar os pedidos de alimentos, acompanhamento de status de entrega e criação de estabelecimento na plataforma.
+O Motivo para desenvolvimento dessa API é propor uma solução para problemas enfrentados por municípios que não possuam o um sistema para gerenciar os pedidos de alimentos como Ifood, por exemplo. Possibilitando o acompanhamento de status de entrega e criação de estabelecimento na plataforma.
 
 ## :seedling: Requisitos Mínimos
 
